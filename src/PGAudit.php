@@ -14,7 +14,7 @@ class PGAudit extends Model
 
     public function getTable(): string
     {
-        return config('pg_audit.table_name');
+        return config('postgres-audit.table_name');
     }
 
     public function getChangedFromAttribute()
