@@ -16,7 +16,7 @@ composer require jalallinux/laravel-postgres-audit
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-postgres-audit-config"
+php artisan vendor:publish --provider="JalalLinuX\PostgreAudit\PGAuditServiceProviders"
 ```
 
 This is the contents of the published config file:
