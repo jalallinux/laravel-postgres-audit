@@ -1,0 +1,25 @@
+-- Define logging logging() function
+CREATE OR REPLACE FUNCTION logging() RETURNS TRIGGER AS
+$log_recorder$
+BEGIN
+    IF COALESCE(USER NOT IN (<except_users>), true) AND TG_OP in (<operations>) THEN
+        IF (TG_OP = 'DELETE') THEN
+            INSERT INTO <table_name>
+            (<primary_columns>, operation, username, table_name, changed, changed_at) VALUES
+            (OLD.<primary_columns>, TG_OP, USER, tg_table_name, row_to_json(OLD.*), TO_CHAR(now(), 'YYYY-MM-DD HH24:MI:SS')::timestamp);
+            RETURN OLD;
+        ELSIF (TG_OP = 'UPDATE') THEN
+            INSERT INTO <table_name>
+            (<primary_columns>, operation, username, table_name, changed, changed_at) VALUES
+            (NEW.<primary_columns>, TG_OP, USER, TG_TABLE_NAME, ('{"from": ' || jsonb_diff_val(row_to_json(OLD.*)::jsonb, row_to_json(NEW.*)::jsonb)::text || ', "to": ' || jsonb_diff_val(row_to_json(NEW.*)::jsonb, row_to_json(OLD.*)::jsonb)::text || '}')::json, TO_CHAR(now(), 'YYYY-MM-DD HH24:MI:SS')::timestamp);
+            RETURN NEW;
+        ELSIF (TG_OP = 'INSERT') THEN
+            INSERT INTO <table_name>
+            (<primary_columns>, operation, username, table_name, changed, changed_at) VALUES
+            (NEW.<primary_columns>, TG_OP, USER, TG_TABLE_NAME, row_to_json(NEW.*), TO_CHAR(now(), 'YYYY-MM-DD HH24:MI:SS')::timestamp);
+            RETURN NEW;
+        END IF;
+    END IF;
+    RETURN NULL;
+END;
+$log_recorder$ LANGUAGE plpgsql;

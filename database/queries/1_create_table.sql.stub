@@ -1,0 +1,11 @@
+-- Define <table_name> table
+CREATE TABLE IF NOT EXISTS public.<table_name>
+(
+    _id SERIAL PRIMARY KEY,
+    <primary_columns> <primary_columns_type> NOT NULL,
+    operation character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    username text COLLATE pg_catalog."default" NOT NULL,
+    table_name text COLLATE pg_catalog."default" NOT NULL,
+    changed json NOT NULL,
+    changed_at timestamp without time zone NOT NULL
+);

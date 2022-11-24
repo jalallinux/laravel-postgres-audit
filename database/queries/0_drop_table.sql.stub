@@ -1,0 +1,2 @@
+-- Drop <table_name> table if exist
+DROP TABLE IF EXISTS public.<table_name>;

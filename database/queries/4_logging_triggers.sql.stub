@@ -1,0 +1,19 @@
+-- Register logging() trigger function on tables except <table_name>
+do
+$$
+    declare
+        f record;
+    begin
+        for f in select table_name
+                from information_schema.tables
+                WHERE table_type = 'BASE TABLE'
+                    and table_schema = 'public'
+                    and table_name in (<target_tables>)
+                    and table_name not in ('<table_name>')
+                    and table_name not in (<except_tables>)
+            loop
+ 		Execute 'DROP TRIGGER IF EXISTS change_events_' || f.table_name || ' ON ' || f.table_name;
+                Execute  'CREATE OR REPLACE TRIGGER change_events_' || f.table_name || ' AFTER INSERT or UPDATE or DELETE ON ' || f.table_name || ' FOR EACH ROW EXECUTE PROCEDURE logging()';
+            end loop;
+    end;
+$$;

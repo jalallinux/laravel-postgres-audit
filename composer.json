@@ -24,7 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "JalalLinuX\\PostgreAudit\\": "src"
+            "JalalLinuX\\PostgreAudit\\": "src",
+            "JalalLinuX\\PostgreAudit\\Database": "database"
         }
     },
     "autoload-dev": {

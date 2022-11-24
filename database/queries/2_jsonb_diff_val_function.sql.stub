@@ -1,0 +1,23 @@
+-- Define jsonb_diff_val() function
+CREATE OR REPLACE FUNCTION jsonb_diff_val(val1 JSONB, val2 JSONB)
+    RETURNS JSONB AS
+$$
+DECLARE
+    result JSONB;
+    v      RECORD;
+BEGIN
+    result = val1;
+    FOR v IN SELECT * FROM jsonb_each(val2)
+        LOOP
+            IF result @> jsonb_build_object(v.key, v.value)
+            THEN
+                result = result - v.key;
+            ELSIF result ? v.key THEN
+                CONTINUE;
+            ELSE
+                result = result || jsonb_build_object(v.key, 'null');
+            END IF;
+        END LOOP;
+    RETURN result;
+END;
+$$ LANGUAGE plpgsql;
