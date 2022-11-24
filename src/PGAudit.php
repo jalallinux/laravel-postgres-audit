@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PGAudit extends Model
 {
     protected $primaryKey = '_id';
+
     protected $casts = [
         'changed_at' => 'datetime',
         'changed' => 'array',
