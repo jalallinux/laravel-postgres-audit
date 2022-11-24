@@ -7,18 +7,15 @@ return [
      * Command drop AuditLog table and overwrite logging() trigger function.
      */
 
-
     /**
      * Target database connection
      */
     'connection' => 'pgsql',
 
-
     /**
      * Audit log table name
      */
     'table_name' => 'audit_logs',
-
 
     /**
      * Target tables for log
@@ -27,14 +24,12 @@ return [
      */
     'target_tables' => '*',
 
-
     /**
      * Except tables for log
      * Except tables has more priority than target tables
      * Split tables with comma
      */
     'except_tables' => 'migrations, password_resets, personal_access_tokens, jobs, failed_jobs, notifications',
-
 
     /**
      * Ignore database user activity
@@ -44,13 +39,11 @@ return [
      */
     'except_users' => null,
 
-
     /**
      * Primary columns
      * Example: id, uuid, slug
      */
     'primary_columns' => 'uuid',
-
 
     /**
      * Primary columns type
@@ -58,10 +51,9 @@ return [
      */
     'primary_columns_type' => 'uuid',
 
-
     /**
      * Operations to log
      * Only support INSERT, DELETE, UPDATE
      */
-    'operations' => 'INSERT, DELETE, UPDATE'
+    'operations' => 'INSERT, DELETE, UPDATE',
 ];
