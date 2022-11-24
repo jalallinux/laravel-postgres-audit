@@ -17,11 +17,6 @@ class PGAuditServiceProviders extends ServiceProvider
         $this->registerPublishing();
     }
 
-    /**
-     * Register Octane's publishing.
-     *
-     * @return void
-     */
     protected function registerPublishing()
     {
         if ($this->app->runningInConsole()) {
@@ -31,11 +26,6 @@ class PGAuditServiceProviders extends ServiceProvider
         }
     }
 
-    /**
-     * Register the commands offered by Octane.
-     *
-     * @return void
-     */
     protected function registerCommands()
     {
         if ($this->app->runningInConsole()) {
