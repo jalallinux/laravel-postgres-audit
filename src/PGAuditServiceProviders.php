@@ -27,7 +27,7 @@ class PGAuditServiceProviders extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/postgres-audit.php' => config_path('postgres-audit.php'),
-            ], 'postgres-audit-config');
+            ]);
         }
     }
 
