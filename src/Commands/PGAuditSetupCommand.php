@@ -110,7 +110,7 @@ class PGAuditSetupCommand extends Command
             $key = ".{$key}";
         }
 
-        return config("pg_audit{$key}");
+        return config("postgres-audit{$key}");
     }
 
     private function tables(): array
