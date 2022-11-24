@@ -8,7 +8,7 @@ class PGAuditServiceProviders extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/postgre-audit.php', 'postgre-audit');
+        $this->mergeConfigFrom(__DIR__.'/../config/postgres-audit.php', 'postgres-audit');
     }
 
     public function boot()
@@ -26,8 +26,8 @@ class PGAuditServiceProviders extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/postgre-audit.php' => config_path('postgre-audit.php'),
-            ], 'postgre-audit-config');
+                __DIR__.'/../config/postgres-audit.php' => config_path('postgres-audit.php'),
+            ], 'postgres-audit-config');
         }
     }
 
