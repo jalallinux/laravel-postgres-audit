@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "jalallinux/laravel-postgres-audit",
+    "description": "Logging queries executed on Postgres even directly!!!",
     "keywords": [
-        ":vendor_name",
-        ":package_slug"
+        "jalallinux",
+        "laravel-postgres-audit"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/jalallinux/laravel-postgres-audit",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "JalalLinuX",
+            "email": "smjjalalzadeh93@gmail.com",
             "role": "Developer"
         }
     ],
@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "JalalLinuX\\PostgreAudit\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "JalalLinuX\\PostgreAudit\\Tests\\": "tests"
         }
     },
     "scripts": {
